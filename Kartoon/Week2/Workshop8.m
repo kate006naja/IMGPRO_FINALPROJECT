@@ -1,0 +1,12 @@
+f = imread('lena.jpg');
+r = fix(size(f,1)/2);
+c = fix(size(f,2)/2);
+topLeft = f(1:r, 1:c, :);
+topRight = f(1:r, c+2:end, :);
+bottomLeft = f(r+2:end, 1:c, :);
+bottomRight = f(r+2:end, c+2:end, :);
+f(1:r, 1:c, :) = bottomRight;
+f(r+2:end, 1:c, :) = topRight;
+f(1:r, c+2:end, :) = bottomLeft;
+f(r+2:end, c+2:end, :) = topLeft;
+imshow(f);
