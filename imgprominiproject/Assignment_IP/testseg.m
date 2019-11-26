@@ -1,4 +1,8 @@
-img = imread('./data/356.jpg');
+clear all;
+close all;
+
+img = imread('./data/217_0.jpg');
+img = imresize(img, 0.5);
 
 edge1 = transform_with(img, 'gray_enhance_canny');
 [seg1, seg2] = getSegment(img, edge1);
