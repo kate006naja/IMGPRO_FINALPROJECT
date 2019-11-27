@@ -101,6 +101,6 @@ gray_imadjust = imadjust(gray);
 gray_histeq = histeq(gray);
 grayadp = adapthisteq(gray);
 figure();
-montage([gray,gray_imadjust,gray_histeq,grayadp])
+montage({gray,gray_imadjust,tire_histeq,tire_adapthisteq},'Size',[1 4])
 %gray = imbinarize(gray, 0.34);
-%figure; imshow(gray);
+figure; imshow(gray);

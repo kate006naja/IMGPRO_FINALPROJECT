@@ -38,20 +38,20 @@ results = ocr(I, 'TextLayout', 'Block');
 results.Text
 
 BW = imbinarize(I);
-figure(); imshowpair(I, BW, 'montage');
+figure(1); imshowpair(I, BW, 'montage');
 
 % Remove Keypad background
 Icorrected = imtophat(I, strel('disk', 15));
 
 BW1 = imbinarize(Icorrected);
-figure; imshowpair(Icorrected, BW1, 'montage')
+figure(2); imshowpair(Icorrected, BW1, 'montage')
 
 % Perform morphological reconstruction and show binarized image.
 marker = imerode(Icorrected, strel('line',10,0));
 Iclean = imreconstruct(marker, Icorrected);
 
 BW2 = imbinarize(Iclean);
-figure; imshowpair(Iclean, BW2, 'montage');
+figure(3); imshowpair(Iclean, BW2, 'montage');
 results = ocr(BW2, 'TextLayout', 'Block');
 results.Text
 
@@ -63,7 +63,7 @@ digits = regexp(results.Text, regularExpr, 'match');
 
 % draw boxes around digits
 Idigits = insertObjectAnnotation(I, 'rectangle', bboxes, digits);
-figure; imshow(Idigits);
+figure(4); imshow(Idigits);
 
 % use the 'CharacterSet' parameter to constrain OCR
 results = ocr(BW2, 'CharacterSet', '0123456789', 'TextLayout', 'Block');
@@ -84,7 +84,7 @@ bboxes = results.CharacterBoundingBoxes(topTenIndexes, :);
 
 Idigits = insertObjectAnnotation(I,'rectangle',bboxes,digits);
 
-figure; 
+figure(5); 
 imshow(Idigits);
 
 % Initialize the blob analysis System object(TM).
@@ -95,7 +95,7 @@ blobAnalyzer = vision.BlobAnalysis('MaximumCount',500);
 
 % Show all the connected regions.
 img = insertShape(I,'rectangle',roi);
-figure;
+figure(6);
 imshow(img);
 
 areaConstraint = area > 300;
@@ -104,7 +104,7 @@ roi = double(roi(areaConstraint, :));
 
 % Show remaining blobs after applying the area constraint.
 img = insertShape(I, 'rectangle', roi);
-figure; imshow(img);
+figure(7); imshow(img);
 
 % Compute the aspect ratio.
 width  = roi(:,3);
@@ -117,7 +117,7 @@ roi = roi( aspectRatio > 0.25 & aspectRatio < 1 ,:);
 
 % Show regions after applying the area and aspect ratio constraints.
 img = insertShape(I,'rectangle',roi);
-figure;
+figure(8);
 imshow(img);
 
 roi(:,1:2) = roi(:,1:2) - 4;
@@ -127,5 +127,5 @@ results = ocr(BW1, roi,'TextLayout','Block');
 text = deblank( {results.Text} );
 img  = insertObjectAnnotation(I,'rectangle',roi,text);
 
-figure; 
+figure(9); 
 imshow(img)

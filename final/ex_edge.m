@@ -1,4 +1,6 @@
 %% ex_edge.m
+clear all;
+close all;
 
 % sobel
 f = imread('lena.bmp');
