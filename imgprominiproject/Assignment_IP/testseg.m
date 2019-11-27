@@ -1,8 +1,9 @@
 clear all;
 close all;
 
-img = imread('./data/217_0.jpg');
-img = imresize(img, 0.5);
+img = imresize(imread('./data/217.jpg'), 0.3);
+%img = imsharpen(img);
+%img = imresize(img, 0.5);
 
 edge1 = transform_with(img, 'gray_enhance_canny');
 [seg1, seg2] = getSegment(img, edge1);
@@ -31,12 +32,12 @@ edge8 = transform_with(img, 'gray_c_di-er');
 figure(1),
 montage([edge1, edge2, edge3, edge4, edge5, edge6, edge7, edge8]);
 
-%figure(2),
-%subplot(3, 1, 1); montage([ seg1, seg2, seg3, seg4, seg5, seg6]);
+figure(),
+montage([ seg1, seg2, seg3]);%, seg4, seg5, seg6]);
 %subplot(3, 1, 2); montage([ seg7, seg8, seg9,seg10, seg11]);
 %subplot(3, 1, 3); montage([ seg12, seg13, seg14, seg15, seg16]);
 %
-gray = rgb2gray(seg3);
+gray = rgb2gray(seg5);
 
 test2 = blockmultithres(gray);
 
@@ -52,4 +53,4 @@ tmp = mat2gray(imclose(imquantize(gray, level), se));
 
 [img_bb, ocr_res] = getBB(tmp);
 
-figure(), imshow(img_bb);
+figure(), imshow(rgb2gray(img_bb));
