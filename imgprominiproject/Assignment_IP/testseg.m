@@ -40,6 +40,14 @@ montage([ seg1, seg2, seg3]);%, seg4, seg5, seg6]);
 gray = rgb2gray(seg5);
 
 test2 = blockmultithres(gray);
+%% Add Hair
+se = strel('disk', 1,0);
+figure;
+seg_img = rgb2gray(seg3);
+seg_img = imerode(imopen(im2bw(seg_img, 0.66), se), se);
+seg_img = mat2gray(seg_img);
+
+gray = seg_img;
 
 figure(), imshow(test2), title('multi-threshold');
 

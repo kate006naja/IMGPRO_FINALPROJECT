@@ -1,5 +1,5 @@
 % degrad5_5.m
-% ----- Modelling the Degradation Function -----
+%% ----- Modelling the Degradation Function -----
 clear all;
 close all;
 clc;
@@ -21,7 +21,7 @@ figure; imshow(im2uint8(mat2gray(g)));
 
 figure; imshow(pixeldup(f, 8), []);
 
-% --- Restoration by Using Direct Inverse Filter Technique
+%% --- Restoration by Using Direct Inverse Filter Technique
 %     via deconvwr function -----
 
 % deblur image using wiener filter
@@ -37,13 +37,13 @@ R = nA/fA;
 fr2 = deconvwnr(g, PSF, R);
 figure; imshow(im2uint8(mat2gray(fr2)));
 
-% --- Restoration by Using Autocorrelation function -----
+%% --- Restoration by Using Autocorrelation function -----
 NCORR = fftshift(real(ifft2(Sn))); % shift the inverse of noise power spectrum
 ICORR = fftshift(real(ifft2(Sf))); % shift the inverse of image power spectrum
 fr3 = deconvwnr(g, PSF, NCORR, ICORR);
 figure; imshow(im2uint8(mat2gray(fr3)));
 
-% ----- Restoration by Using Constrained Least Squares (Regularized)
+%% ----- Restoration by Using Constrained Least Squares (Regularized)
 %       Filtering -----
 fr4 = deconvreg(g, PSF, 2);         % noise power is approximately 2
 figure; imshow(im2uint8(mat2gray(fr4)));
