@@ -1,8 +1,8 @@
 clear all;
 close all;
 
-img = imread('./data/356.jpg');
-%warning('off', 'images:initSize:adjustingMag')
+img = imread('./data/312.jpg');
+warning('off', 'images:initSize:adjustingMag')
 
 % find edge and segment.
 edge1 = transform_with(img, 'gray_enhance_canny');
@@ -10,11 +10,8 @@ edge1 = transform_with(img, 'gray_enhance_canny');
 
 % segmented to gray.
 gray_seg = rgb2gray(seg1);
-%gray_seg = adapthisteq(gray_seg);
-
-% se = strel('disk', 5);
-% gray_seg = imclose(gray_seg, se);
-res = getResult(gray_seg);
+gray_seg = 
+res = getResult();
 
 figure(),
 imshow(img), title('Original');
