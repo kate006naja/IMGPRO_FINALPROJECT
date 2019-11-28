@@ -11,7 +11,7 @@ SIGMA = 14;
 LOW_THRESHOLD_FACTOR = 0.1;
 HIGH_THRESHOLD_FACTOR = 0.3;
 
-im = imread('building.tif');
+im = imread('./data/312.jpg');
 im = double(im);
 step = step+1;
 figure(step);
@@ -22,7 +22,7 @@ conv_im = conv2(im, gaussian_filter, 'same');
 step = step+1;
 figure(step);
 
-[gaussian_filter_x gaussian_filter_y] = gradient(gaussian_filter);
+[gaussian_filter_x, gaussian_filter_y] = gradient(gaussian_filter);
 im_gradient_x = conv2(conv_im, gaussian_filter_x, 'same');
 
 % PAGE 2
