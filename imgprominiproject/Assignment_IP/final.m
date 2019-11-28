@@ -1,7 +1,7 @@
 clear all;
 close all;
 
-img = imread('./data/356.jpg');
+img = imread('./data/151.jpg');
 %warning('off', 'images:initSize:adjustingMag')
 
 % find edge and segment.
