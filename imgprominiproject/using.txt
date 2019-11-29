@@ -1,0 +1,34 @@
+พยายามเขียน model ที่จะแก้ได้ทั้งหมด
+
+final.m
+
+แปลงเป็น grayscale
+ใช้ canny enhance ในการ
+Segment seg1 seg2
+enhance canny - enhance คือการทำ contrast เพิ่ม contrast
+more white more dark by imadjust adapthisteq
+after enhance we finding edge canny edge detection
+after we got edge we then segment the picture using
+hough transfrom(only line segment) and we use horizon axis (ขนานแกน x) 
+และเราก็มาดูว่าเส้นในแนวแกน x เส้นไหนเด่นชัดที่สุด เราก็จะได้เส้นที่ชัดที่สุด
+ที่เป็นเส้นกรอบบนกรอบล่างของรูป
+แล้วหลังจากได้กรอบ แล้วเราก็หาในแนว vertical ด้วย โดย seg1 คือรูปที่
+หาขอบเฉพาะในแนว horizon
+
+GetResult
+เอารูปที่ seg มาแล้วมาทำ 3 ท่า
+1ป้าย
+2แฮ
+3วอลโว่
+
+How to check ?
+แต่ละรูปมาลอง ocr ดู แล้วตัวไหนมี text ออกมาแสดงว่า ocr เจอโดยดูว่าตัวไหนมี
+text ออกมาเยอะกว่ากัน โดย split strip ออกไปหมด 
+โวลโว่ เกรงใจว่าน่าจะเป็นเรื่องของฟ้อนต์
+อัลกอป้ายย วิธีคือเราทำ threshold โดยใช้ automate threshold ในการตัด
+เพราะการในป้ายมั1นมักจะมีการแยก range สีที่ต่างกันอยู่แล้ว
+แล้ว็ทำ imerode เพราะภาพมี noise(ใน 100) เลยทำให้เพี้ยนนิดหน่อย
+ทุกวิธีต่างกันแค่กรณี 1 ใช้ automate threshold
+กรณี 2 กำหนด threshold เอง
+กรณี 3 ใช้ correlation: ด้วย mask ที่ชื่อว่า prewit เพราะตัวอื่นๆ ลองแล้วมัน
+จะไม่แสดงผลลัพธ์ แต่พอใช้ prewit เรา segment เจอ

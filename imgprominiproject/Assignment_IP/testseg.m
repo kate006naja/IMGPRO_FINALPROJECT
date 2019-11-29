@@ -48,10 +48,15 @@ test = mat2gray(im2bw(gray, 0.2));
 
 % figure(), imshow(imerode(test, se));
 
-%%
-% width = 200;
-% gray = rgb2gray(seg1);
-% 
+%
+width = 200;
+gray = rgb2gray(seg1);
+
+cap = gray(60:220, 480:min(y+width, size(gray, 2)));
+cap = mat2gray(regiongrowing(im2double(cap), 80, 100, 0.071));
+% [img_bb, ocr_res] = getBB(cap);
+figure(), imshow(cap);
+
 % for y = 480:10:size(gray, 2)
 %     cap = gray(60:220, y:min(y+width, size(gray, 2)));
 %     cap = mat2gray(regiongrowing(im2double(cap), 80, 100, 0.071));
@@ -62,9 +67,9 @@ test = mat2gray(im2bw(gray, 0.2));
 %         continue
 %     end
 % end
-% 
-% figure(), imshow(img_bb);
 
+figure(), imshow(img_bb);
+close all;
 %%
 [level, metric] = multithresh(gray);
 

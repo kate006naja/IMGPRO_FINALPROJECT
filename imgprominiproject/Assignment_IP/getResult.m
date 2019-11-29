@@ -23,7 +23,7 @@ function res = getResult(gray)
     % for HAIR
     
     se = strel('disk', 1, 0);
-
+% imerode
     tmp = mat2gray(imerode(im2bw(gray, 0.66), se));
     
     try

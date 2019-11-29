@@ -18,6 +18,12 @@ function img = transform_with(img, flag)
     
     switch flag
         
+        % enhance canny
+        case 'gray_enhance_canny'
+            img = edge(gray_enh, 'Canny', 0.1);
+        case 'gray_c_enhance_canny'
+            img = edge(gray_c_enh, 'Canny', 0.1);
+           
         % gray
         case 'gray'
             img = gray;
@@ -36,12 +42,7 @@ function img = transform_with(img, flag)
         case 'gray_c_canny'
             img = gray_c_edge;
             
-        % enhance canny
-        case 'gray_enhance_canny'
-            img = edge(gray_enh, 'Canny', 0.1);
-        case 'gray_c_enhance_canny'
-            img = edge(gray_c_enh, 'Canny', 0.1);
-            
+
         % dilation
         case 'gray_di'
             img = imdilate(gray_edge, se);
